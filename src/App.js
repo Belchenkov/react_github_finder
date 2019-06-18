@@ -12,9 +12,6 @@ class App extends Component{
         loading: false
     };
 
-    static propTypes = {
-        searchUsers: PropTypes.func.isRequired
-    };
 
     // Search Github users
     searchUsers = async text => {
@@ -29,7 +26,13 @@ class App extends Component{
         this.setState({ users: res.data.items, loading: false });
     };
 
+    clearUsers = () => {
+        this.setState({ users: [], loading: false });
+    };
+
     render() {
+        const { users, loading } = this.state;
+
         return (
             <div className="App">
               <Navbar
@@ -37,10 +40,14 @@ class App extends Component{
                 icon="fab fa-github"
               />
               <div className="container">
-                  <Search searchUsers={this.searchUsers} />
+                  <Search
+                      searchUsers={this.searchUsers}
+                      clearUsers={this.clearUsers}
+                      showClear={users.length > 0}
+                  />
                   <Users
-                      loading={this.state.loading}
-                      users={this.state.users}
+                      loading={loading}
+                      users={users}
                   />
               </div>
             </div>

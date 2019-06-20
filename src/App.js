@@ -18,7 +18,6 @@ class App extends Component{
         alert: null
     };
 
-
     // Search Github users
     searchUsers = async text => {
         this.setState({loading: true});
@@ -78,6 +77,10 @@ class App extends Component{
                                         showClear={users.length > 0}
                                         setAlert={this.setAlert}
                                     />
+                                    <Users
+                                        loading={loading}
+                                        users={users}
+                                    />
                                 </Fragment>
                             )}
                           />
@@ -99,10 +102,6 @@ class App extends Component{
                             )}
                           />
                       </Switch>
-                       <Users
-                          loading={loading}
-                          users={users}
-                       />
                   </div>
                 </div>
             </Router>

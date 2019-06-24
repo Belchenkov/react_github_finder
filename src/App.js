@@ -10,6 +10,8 @@ import User from "./components/users/User";
 import Search from "./components/users/Search";
 import Alert from "./components/layout/Alert";
 
+import GithubState from "./context/github/GithubState";
+
 const App = () => {
     const [users, setUsers] = useState([]);
     const [user, setUser] = useState({});
@@ -70,7 +72,8 @@ const App = () => {
     };
 
     return (
-        <Router>
+        <GithubState>
+            <Router>
             <div className="App">
               <Navbar
                 title="Github Finder"
@@ -120,6 +123,7 @@ const App = () => {
               </div>
             </div>
         </Router>
+        </GithubState>
     );
 };
 
